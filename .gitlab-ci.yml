@@ -1,0 +1,37 @@
+stages:
+  - clean          # List of stages for jobs, and their order of execution
+  - build
+  - deploy
+
+clean-job:
+  stage: clean
+  script:
+    - docker-compose down 
+    - docker image rm week2docker
+  tags:
+    - week3-devops
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+
+build-job:      
+  stage: build
+  script:
+    - docker build . -t week2docker 
+  tags:
+    - week3-devops
+  only:
+    - main
+    - dev
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+
+deploy-job:      # This job runs in the deploy stage.
+  stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
+  script:
+    - echo "Deploying application..."
+    - docker-compose -f docker-compose.yaml up -d
+    - echo "Application successfully deployed."
+  tags:
+    - week3-devops
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
