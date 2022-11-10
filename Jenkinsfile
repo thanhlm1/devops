@@ -10,7 +10,7 @@ pipeline{
         stage('Clean') {
     	agent any
             steps {
-      	        sh 'docker-compose down'
+      	        sh 'docker-compose -f /var/lib/jenkins/workspace/webapp/docker-compose.yaml down'
         }
     }
         stage('Build image') {
