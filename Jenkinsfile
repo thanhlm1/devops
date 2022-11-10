@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage("Pull code"){
             steps{
-                git 'https://github.com/thanhlm1/devops.git'
+                git branch: 'main', url: 'https://github.com/thanhlm1/devops.git'
             }
         }
     }
