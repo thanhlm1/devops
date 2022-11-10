@@ -6,10 +6,24 @@ pipeline{
                 git branch: 'main', url: 'https://github.com/thanhlm1/devops.git'
             }
         }
-        stage('Docker Build') {
+   
+        stage('Clean') {
+    	agent any
+            steps {
+      	        sh 'docker-compose down'
+                sh 'docker image rm week2docker'
+        }
+    }
+        stage('Build image') {
     	agent any
             steps {
       	        sh 'docker build -f /var/lib/jenkins/workspace/webapp/Dockerfile -t week2docker .'
+        }
+    }
+        stage('Deploy') {
+    	agent any
+            steps {
+      	        sh 'docker-compose -f /var/lib/jenkins/workspace/webapp/docker-compose.yaml up -d'
         }
     }
     }
