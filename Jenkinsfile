@@ -11,7 +11,6 @@ pipeline{
     	agent any
             steps {
       	        sh 'docker-compose down'
-                sh 'docker image rm week2docker'
         }
     }
         stage('Build image') {
