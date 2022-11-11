@@ -36,7 +36,7 @@ pipeline{
         always {
             echo "Slack Notifications."
             slackSend channel: '#cicd-notifications',
-                color: COLOR_MAP[currentBuild.currentResult],
+                color: 'good',
                 message: "*${currentBuild.currentResult}"
         }
     }
