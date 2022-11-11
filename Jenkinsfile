@@ -13,7 +13,7 @@ pipeline{
       	        sh 'docker-compose -f /var/lib/jenkins/workspace/webapp/docker-compose.yaml down'
         }
     }
-       stage('Clean Images') {
+        stage('Clean Images') {
     	agent any
             steps {
       	        sh 'docker image rm week2docker'
