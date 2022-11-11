@@ -32,4 +32,12 @@ pipeline{
         }
     }
     }
+    post {
+        always {
+            echo "Slack Notifications."
+            slackSend channel: '#cicd-notifications',
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*${currentBuild.currentResult}"
+        }
+    }
 }
