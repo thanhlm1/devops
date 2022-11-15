@@ -13,11 +13,11 @@ pipeline{
         }
          stage("Sonar Analysis"){
             environment {
-                scannerHome = tool 'sona4.7'
+                scannerHome = tool 'sonar4.7'
             }
             steps{
                 withSonarQubeEnv('sonar') {
-                   sh '''sonar-scanner -Dsonar.login=d714f71552b1fa072f652e2e380fe6dc06b51350'''
+                   sh '''$(scannerHome)/bin/sonar-scanner -Dsonar.login=d714f71552b1fa072f652e2e380fe6dc06b51350'''
               }
             }
         }
