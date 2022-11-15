@@ -19,6 +19,6 @@ EXPOSE 80
 # RUN git clone --branch main https://thanhlm:glpat--8_sjwJVUV5Gfq5zaek7@gitlab.com/cs_le_minh_thanh2/week1-devops.git
 RUN git clone https://github.com/thanhlm1/devops.git
 RUN rm usr/share/nginx/html/*
-RUN cp -r devops/web4/* /usr/share/nginx/html/
+RUN cp -r devops/web/* /usr/share/nginx/html/
 # RUN groupadd -r cystack && useradd -r -g cystack -s /sbin/nologin -c "CyStack user" cystack
 # CMD ["./start.sh"]
