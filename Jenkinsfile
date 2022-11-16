@@ -11,7 +11,7 @@ pipeline{
                 git branch: 'main', url: 'https://github.com/thanhlm1/devops.git'
             }
         }
-        //  stage("Sonar Analysis"){
+        //  stage("Analysis"){
         //     environment {
         //         scannerHome = tool 'sonar4.7'
         //     }
@@ -38,6 +38,12 @@ pipeline{
     	agent any
             steps {
       	        sh 'docker build -f /var/lib/jenkins/workspace/webapp/Dockerfile -t week2docker .'
+        }
+    }
+        stage('Push Image to Dockerhub') {
+    	agent any
+            steps {
+      	        sh 'docker push thanhlm1704/week2docker'
         }
     }
         stage('Deploy') {
