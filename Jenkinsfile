@@ -32,6 +32,7 @@ pipeline{
     	agent any
             steps {
       	        sh 'docker image rm week2docker'
+                sh 'docker image rm thanhlm1704/week2docker'
         }
     }
         stage('Build image') {
@@ -43,6 +44,7 @@ pipeline{
         stage('Push Image to Dockerhub') {
     	agent any
             steps {
+                sh 'docker tag week2docker thanhlm1704/week2docker'
       	        sh 'docker push thanhlm1704/week2docker'
         }
     }
