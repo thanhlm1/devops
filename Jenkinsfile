@@ -26,7 +26,7 @@ pipeline{
     	agent any
             steps {
       	        sh 'docker-compose -f /var/lib/jenkins/workspace/webapp/docker-compose.yaml down'
-                sh 'whoami'
+                sh 'su azureuser'
         }
     }
         stage('Clean Images') {
