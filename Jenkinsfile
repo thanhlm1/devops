@@ -41,10 +41,15 @@ pipeline{
       	        sh 'docker build -f /var/lib/jenkins/workspace/webapp/Dockerfile -t week2docker .'
         }
     }
-        stage('Push Image to Dockerhub') {
+        stage('Tag') {
     	agent any
             steps {
                 sh 'docker tag week2docker thanhlm1704/week2docker'
+        }
+    }
+        stage('Push Image to Dockerhub') {
+    	agent any
+            steps {
       	        sh 'docker push thanhlm1704/week2docker'
         }
     }
