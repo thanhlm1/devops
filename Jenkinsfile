@@ -4,7 +4,9 @@ def COLOR_MAP = [
 ]
 
 pipeline{
-    agent any
+    agent { 
+                label 'master'
+            }
     stages{
         stage("Pull code"){
             steps{
@@ -23,33 +25,43 @@ pipeline{
         // }
    
         stage('Stop service') {
-    	agent any
+    	agent { 
+                label 'master'
+            }
             steps {
       	        sh 'docker-compose -f /var/lib/jenkins/workspace/webapp/docker-compose.yaml down'
         }
     }
         stage('Clean Images') {
-    	agent any
+    	agent { 
+                label 'master'
+            }
             steps {
       	        sh 'docker image rm week2docker'
                 sh 'docker image rm thanhlm1704/week2docker'
         }
     }
         stage('Build image') {
-    	agent any
+    	agent { 
+                label 'master'
+            }
             steps {
       	        sh 'docker build -f /var/lib/jenkins/workspace/webapp/Dockerfile -t week2docker .'
         }
     }
         stage('Push Image to Dockerhub') {
-    	agent any
+    	agent { 
+                label 'master'
+            }
             steps {
                 sh 'docker tag week2docker thanhlm1704/week2docker'
       	        sh 'docker push thanhlm1704/week2docker'
         }
     }
         stage('Deploy') {
-    	agent any
+    	agent { 
+                label 'master'
+            }
             steps {
       	        sh 'docker-compose -f /var/lib/jenkins/workspace/webapp/docker-compose.yaml up -d'
         }
@@ -58,9 +70,9 @@ pipeline{
         agent { 
                 label 'k8s-node'
             }
-            steps {
-                sh 'ls'
-            }
+            // steps {
+            //     sh 'ls'
+            // }
         }
     }
     post {
