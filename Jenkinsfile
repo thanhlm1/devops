@@ -13,17 +13,7 @@ pipeline{
                 git branch: 'main', url: 'https://github.com/thanhlm1/devops.git'
             }
         }
-        //  stage("Analysis"){
-        //     environment {
-        //         scannerHome = tool 'sonar4.7'
-        //     }
-        //     steps{
-        //         withSonarQubeEnv('sonar') {
-        //            sh '''$(scannerHome)/bin/sonar-scanner -Dsonar.login=d714f71552b1fa072f652e2e380fe6dc06b51350'''
-        //       }
-        //     }
-        // }
-   
+        
         stage('Stop service') {
     	agent { 
                 label 'master'
