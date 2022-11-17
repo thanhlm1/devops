@@ -66,7 +66,7 @@ pipeline{
       	        sh 'docker-compose -f /var/lib/jenkins/workspace/webapp/docker-compose.yaml up -d'
         }
     }
-        stage('Test on agent') {
+        stage('Deploy on k8s') {
         agent { 
                 label 'k8s-node'
             }
