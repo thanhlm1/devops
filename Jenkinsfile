@@ -71,7 +71,8 @@ pipeline{
                 label 'k8s-node'
             }
             steps {
-                sh 'ls'
+                sh 'whoami'
+                sh 'kubectl apply -f /home/azureuser/webapp.yaml'
             }
         }
     }
