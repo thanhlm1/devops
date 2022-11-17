@@ -71,8 +71,10 @@ pipeline{
                 label 'k8s-node'
             }
             steps {
-                sh 'whoami'
+                sh 'kubectl delete svc webapp-service'
+                sh 'kubectl delete deployment webapp-deployment'
                 sh 'kubectl apply -f /home/azureuser/webapp.yaml'
+                sh 'minikube service webapp-service --url'
             }
         }
     }
