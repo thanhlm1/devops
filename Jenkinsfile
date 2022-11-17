@@ -70,9 +70,9 @@ pipeline{
         agent { 
                 label 'k8s-node'
             }
-            // steps {
-            //     sh 'ls'
-            // }
+            steps {
+                sh 'ls'
+            }
         }
     }
     post {
