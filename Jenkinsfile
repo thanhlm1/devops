@@ -54,6 +54,14 @@ pipeline{
       	        sh 'docker-compose -f /var/lib/jenkins/workspace/webapp/docker-compose.yaml up -d'
         }
     }
+        stage('Test on agent') {
+        agent { 
+                label 'k8s-node'
+            }
+            steps {
+                sh 'ls'
+            }
+        }
     }
     post {
         always {
