@@ -56,17 +56,17 @@ pipeline{
       	        sh 'docker-compose -f /var/lib/jenkins/workspace/webapp/docker-compose.yaml up -d'
         }
     }
-        stage('Deploy on k8s') {
-        agent { 
-                label 'k8s-node'
-            }
-            steps {
-                sh 'kubectl delete svc webapp-service'
-                sh 'kubectl delete deployment webapp-deployment'
-                sh 'kubectl apply -f /home/azureuser/webapp.yaml'
-                // sh 'minikube service webapp-service --url'
-            }
-        }
+        // stage('Deploy on k8s') {
+        // agent { 
+        //         label 'k8s-node'
+        //     }
+        //     steps {
+        //         sh 'kubectl delete svc webapp-service'
+        //         sh 'kubectl delete deployment webapp-deployment'
+        //         sh 'kubectl apply -f /home/azureuser/webapp.yaml'
+        //         // sh 'minikube service webapp-service --url'
+        //     }
+        // }
     }
     post {
         always {
