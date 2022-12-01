@@ -16,9 +16,25 @@ RUN apt-get -y install git
 # ENV PYTHONUNBUFFERED=1
 EXPOSE 443
 EXPOSE 80
-# RUN git clone --branch main https://thanhlm:glpat--8_sjwJVUV5Gfq5zaek7@gitlab.com/cs_le_minh_thanh2/week1-devops.git
 RUN git clone https://github.com/thanhlm1/devops.git
 RUN rm usr/share/nginx/html/*
 RUN cp -r devops/web0/* /usr/share/nginx/html/
-# RUN groupadd -r cystack && useradd -r -g cystack -s /sbin/nologin -c "CyStack user" cystack
+RUN groupadd -r thanhlm && useradd -r -g thanhlm -s /sbin/nologin -c "thanhlm" thanhlm
 # CMD ["./start.sh"]
+
+# FROM nginx as intermediate
+# WORKDIR /app
+# RUN apt-get update
+# RUN apt-get -y install git
+# RUN git clone https://github.com/thanhlm1/devops.git
+
+# FROM nginx
+# EXPOSE 443
+# EXPOSE 80
+# RUN rm usr/share/nginx/html/*
+# COPY --from=intermediate /app/ .
+# RUN pwd
+# RUN ls
+# RUN cp -r /devops/web0/* /usr/share/nginx/html/
+# RUN groupadd -r thanhlm && useradd -r -g thanhlm -s /sbin/nologin -c "thanhlm" thanhlm
+# # CMD ["./start.sh"]
